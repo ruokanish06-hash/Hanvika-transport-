@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hanvika Transport – Reliable Vehicle Transport Services</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Lato:wght@300;400;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:   #1A2540;
+    --gold:   #C8952A;
+    --cream:  #F7F2EA;
+    --white:  #FFFFFF;
+    --steel:  #3A4A6B;
+    --light:  #EAE4D8;
+    --dark:   #0E1628;
+    --text:   #2B2B2B;
+    --muted:  #6B7280;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--dark);
+    color: var(--light);
+    font-size: 0.8rem;
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.06em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.45rem 2.5rem;
+    gap: 1rem;
+  }
+  .topbar a { color: var(--gold); text-decoration: none; }
+  .topbar a:hover { text-decoration: underline; }
+
+  /* ── NAV ── */
+  nav {
+    background: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 18px rgba(0,0,0,0.35);
+  }
+  .logo-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0.9rem 0;
+  }
+  .logo-icon {
+    width: 52px; height: 52px;
+    background: var(--gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .logo-icon svg { width: 28px; height: 28px; fill: var(--navy); }
+  .logo-text { line-height: 1.15; }
+  .logo-text .brand { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: var(--white); letter-spacing: 0.02em; }
+  .logo-text .tagline { font-family: 'Oswald', sans-serif; font-size: 0.68rem; color: var(--gold); letter-spacing: 0.14em; text-transform: uppercase; }
+
+  nav ul { list-style: none; display: flex; gap: 0.3rem; }
+  nav ul li a {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--light);
+    text-decoration: none;
+    padding: 0.5rem 0.85rem;
+    border-radius: 3px;
+    transition: background 0.2s, color 0.2s;
+  }
+  nav ul li a:hover { background: var(--gold); color: var(--navy); }
+
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(135deg, var(--dark) 0%, var(--navy) 55%, var(--steel) 100%);
+    position: relative;
+    overflow: hidden;
+    padding: 5.5rem 2.5rem 4.5rem;
+    display: flex;
+    align-items: center;
+    min-height: 520px;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      repeating-linear-gradient(0deg, transparent, transparent 59px, rgba(200,149,42,0.07) 60px),
+      repeating-linear-gradient(90deg, transparent, transparent 59px, rgba(200,149,42,0.07) 60px);
+    pointer-events: none;
+  }
+  .hero-road {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 6px;
+    background: repeating-linear-gradient(90deg, var(--gold) 0, var(--gold) 40px, transparent 40px, transparent 80px);
+    opacity: 0.35;
+  }
+  .hero-content { position: relative; max-width: 700px; }
+  .hero-badge {
+    display: inline-block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.3rem 0.9rem;
+    border-radius: 2px;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.1;
+    margin-bottom: 1.1rem;
+  }
+  .hero h1 em { color: var(--gold); font-style: normal; }
+  .hero p {
+    font-size: 1.05rem;
+    color: rgba(234,228,216,0.85);
+    max-width: 520px;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--navy);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.8rem 2rem;
+    border-radius: 3px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s, transform 0.15s;
+    margin-right: 1rem;
+  }
+  .btn-primary:hover { background: #e0a930; transform: translateY(-2px); }
+  .btn-ghost {
+    display: inline-block;
+    border: 2px solid rgba(234,228,216,0.5);
+    color: var(--light);
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.75rem 1.8rem;
+    border-radius: 3px;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  .hero-truck {
+    position: absolute;
+    right: 3rem;
+    bottom: 2.5rem;
+    opacity: 0.13;
+    pointer-events: none;
+  }
+  .hero-truck svg { width: 340px; height: auto; fill: var(--white); }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--gold);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+  }
+  .stat {
+    padding: 1.2rem 2.5rem;
+    text-align: center;
+    border-right: 1px solid rgba(26,37,64,0.18);
+    flex: 1;
+    min-width: 160px;
+  }
+  .stat:last-child { border-right: none; }
+  .stat .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.9rem;
+    font-weight: 900;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .stat .lbl {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--dark);
+    margin-top: 0.25rem;
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: 5rem 2.5rem; }
+
+  .section-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1.2rem;
+  }
+  .divider {
+    width: 56px; height: 3px;
+    background: var(--gold);
+    margin-bottom: 1.8rem;
+  }
+  .container { max-width: 1100px; margin: 0 auto; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-visual {
+    background: var(--navy);
+    border-radius: 4px;
+    padding: 3rem 2rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-visual::before {
+    content: '';
+    position: absolute;
+    top: -30px; right: -30px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: var(--gold);
+    opacity: 0.1;
+  }
+  .about-visual svg { width: 120px; fill: var(--gold); opacity: 0.85; }
+  .about-visual .owner-card {
+    margin-top: 2rem;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(200,149,42,0.3);
+    border-radius: 3px;
+    padding: 1.2rem;
+  }
+  .about-visual .owner-card p { color: var(--light); font-size: 0.9rem; line-height: 1.5; }
+  .about-visual .owner-card strong { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 1.05rem; display: block; margin-bottom: 0.2rem; }
+  .about-text p { color: var(--muted); font-weight: 300; font-size: 1rem; margin-bottom: 1rem; }
+  .checkmarks { list-style: none; margin-top: 1.5rem; display: grid; gap: 0.6rem; }
+  .checkmarks li {
+    display: flex; align-items: flex-start; gap: 0.7rem;
+    font-size: 0.95rem;
+  }
+  .checkmarks li::before {
+    content: '✔';
+    color: var(--gold);
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+  }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .service-card {
+    background: var(--white);
+    border-top: 3px solid var(--gold);
+    border-radius: 3px;
+    padding: 2rem 1.5rem;
+    box-shadow: 0 2px 16px rgba(26,37,64,0.07);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(26,37,64,0.12); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.1rem;
+  }
+  .service-icon svg { width: 24px; fill: var(--gold); }
+  .service-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .service-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+  /* ── WHY CHOOSE US ── */
+  #why { background: var(--navy); }
+  #why .section-title { color: var(--white); }
+  #why .section-label { color: var(--gold); }
+  .why-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .why-card {
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border: 1px solid rgba(200,149,42,0.2);
+    border-radius: 4px;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .why-card:hover { border-color: var(--gold); background: rgba(200,149,42,0.05); }
+  .why-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: var(--gold);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: -0.5rem;
+  }
+  .why-card h3 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1rem; margin-bottom: 0.5rem; }
+  .why-card p { font-size: 0.84rem; color: rgba(234,228,216,0.65); line-height: 1.6; }
+
+  /* ── VEHICLES ── */
+  #vehicles { background: var(--white); }
+  .vehicle-feature {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+    margin-top: 2.5rem;
+  }
+  .vehicle-img {
+    background: var(--cream);
+    border-radius: 4px;
+    border: 1px solid var(--light);
+    padding: 3rem;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .vehicle-img::after {
+    content: 'BOLERO PICKUP';
+    position: absolute;
+    bottom: 1rem; right: 1rem;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    border: 1px solid var(--gold);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+  }
+  .vehicle-img svg { width: 220px; fill: var(--steel); }
+  .vehicle-specs { list-style: none; margin-top: 1.2rem; display: grid; gap: 0.8rem; }
+  .vehicle-specs li {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed var(--light);
+    padding-bottom: 0.6rem;
+    font-size: 0.9rem;
+  }
+  .vehicle-specs li span:first-child { color: var(--muted); }
+  .vehicle-specs li span:last-child { font-weight: 700; color: var(--navy); }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--dark); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-label { color: var(--gold); }
+  #contact .divider { background: var(--gold); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    margin-top: 2.5rem;
+  }
+  .contact-info { display: grid; gap: 1.5rem; }
+  .cinfo {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .cinfo-icon {
+    width: 42px; height: 42px; flex-shrink: 0;
+    background: rgba(200,149,42,0.12);
+    border: 1px solid rgba(200,149,42,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cinfo-icon svg { width: 18px; fill: var(--gold); }
+  .cinfo-text label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    display: block;
+    margin-bottom: 0.2rem;
+  }
+  .cinfo-text p { color: var(--light); font-size: 0.95rem; line-height: 1.55; }
+  .cinfo-text a { color: var(--gold); text-decoration: none; }
+
+  .whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    background: #25D366;
+    color: #fff;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.8rem;
+    border-radius: 3px;
+    text-decoration: none;
+    margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .whatsapp-btn:hover { background: #1ebe57; transform: translateY(-2px); }
+  .whatsapp-btn svg { width: 20px; fill: #fff; }
+
+  .contact-map-box {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(200,149,42,0.2);
+    border-radius: 4px;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .contact-map-box h3 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.2rem; }
+  .contact-map-box p { color: rgba(234,228,216,0.65); font-size: 0.9rem; line-height: 1.65; }
+  .hours-table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+  .hours-table td { padding: 0.5rem 0; font-size: 0.88rem; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  .hours-table td:first-child { color: rgba(234,228,216,0.55); }
+  .hours-table td:last-child { color: var(--gold); text-align: right; font-weight: 700; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    border-top: 1px solid rgba(200,149,42,0.2);
+    padding: 1.8rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  footer p { font-size: 0.8rem; color: rgba(234,228,216,0.4); }
+  footer p strong { color: var(--gold); }
+  .footer-links { display: flex; gap: 1.2rem; }
+  .footer-links a { font-size: 0.8rem; color: rgba(234,228,216,0.4); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── MOBILE ── */
+  @media (max-width: 768px) {
+    .topbar { flex-direction: column; padding: 0.6rem 1rem; text-align: center; gap: 0.3rem; }
+    nav { flex-direction: column; padding: 0.8rem 1rem; }
+    nav ul { flex-wrap: wrap; justify-content: center; }
+    .hero { padding: 3.5rem 1.2rem 3rem; min-height: auto; }
+    .hero-truck { display: none; }
+    .about-grid, .vehicle-feature, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 3.5rem 1.2rem; }
+    footer { flex-direction: column; align-items: flex-start; }
+    .stats-bar { gap: 0; }
+    .stat { min-width: 50%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <span>📍 Aandal Nagar Molachur Arch Opposite Sunguvarchatram</span>
+  <span>📞 <a href="tel:9600648843">9600648843</a> &nbsp;|&nbsp; 📞 <a href="tel:7708417239">7708417239</a> &nbsp;|&nbsp; 🟢 24 / 7 Service Available</span>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="logo-wrap">
+    <div class="logo-icon">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M2 20V11l4-6h14l4 6v9H2zM6 11h12l-2-3H8L6 11zM0 20h24v2H0zM26 14h4l2 4v5h-6V14zM3 22h3v2H3zM19 22h3v2h-3z"/></svg>
+    </div>
+    <div class="logo-text">
+      <div class="brand">Hanvika Transport</div>
+      <div class="tagline">Trusted · Reliable · On Time</div>
+    </div>
+  </div>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#vehicles">Vehicles</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Established · Sunguvarchatram</div>
+    <h1>Transport You Can<br/><em>Always Count On</em></h1>
+    <p>Hanvika Transport delivers safe, prompt, and professional vehicle transport services — day or night, every day of the year.</p>
+    <a href="#contact" class="btn-primary">Book Now</a>
+    <a href="tel:9600648843" class="btn-ghost">Call Us</a>
+  </div>
+  <div class="hero-truck">
+    <svg viewBox="0 0 200 90" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="30" width="110" height="45" rx="4"/><rect x="120" y="40" width="60" height="35" rx="3"/><circle cx="35" cy="78" r="10"/><circle cx="90" cy="78" r="10"/><circle cx="155" cy="78" r="10"/><rect x="120" y="50" width="55" height="18" rx="2" fill-opacity="0.3"/></svg>
+  </div>
+  <div class="hero-road"></div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat"><div class="num">24/7</div><div class="lbl">Service Hours</div></div>
+  <div class="stat"><div class="num">100%</div><div class="lbl">On-Time Delivery</div></div>
+  <div class="stat"><div class="num">Bolero</div><div class="lbl">Pickup Vehicle</div></div>
+  <div class="stat"><div class="num">1 Call</div><div class="lbl">Instant Booking</div></div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual">
+        <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="15" width="60" height="30" rx="3"/><rect x="65" y="22" width="28" height="23" rx="2"/><circle cx="18" cy="47" r="7"/><circle cx="52" cy="47" r="7"/><circle cx="83" cy="47" r="7"/><rect x="65" y="28" width="26" height="12" rx="1" fill-opacity="0.4"/></svg>
+        <div class="owner-card">
+          <strong>Sivakumar S</strong>
+          <p>Owner &amp; Founder<br/>Hanvika Transport Services</p>
+        </div>
+      </div>
+      <div class="about-text">
+        <div class="section-label">About Us</div>
+        <h2 class="section-title">Your Trusted Transport Partner</h2>
+        <div class="divider"></div>
+        <p>Hanvika Transport is a dedicated vehicle transport service based in Sunguvarchatram, committed to delivering safe, efficient, and affordable transport solutions to individuals and businesses alike.</p>
+        <p>Under the leadership of <strong>Sivakumar S</strong>, we operate with integrity, punctuality, and a customer-first mindset — ensuring every journey is handled with care.</p>
+        <ul class="checkmarks">
+          <li>Fully operational 24 hours a day, 7 days a week</li>
+          <li>Experienced and professional drivers</li>
+          <li>Bolero pickup vehicle — robust, reliable, and road-ready</li>
+          <li>Direct WhatsApp booking for instant confirmation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">What We Offer</div>
+    <h2 class="section-title">Our Transport Services</h2>
+    <div class="divider"></div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5S5.17 15.5 6 15.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg></div>
+        <h3>Goods Transport</h3>
+        <p>Carry goods, materials, and loads safely using our Bolero Pickup — built for heavy-duty hauling.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+        <h3>Local & Outstation</h3>
+        <p>Whether it's a local run or a long outstation trip, we cover your route with the same dedication and care.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zm4.24 16L12 15.45 7.77 18l1.12-4.81-3.73-3.23 4.92-.42L12 5l1.92 4.53 4.92.42-3.73 3.23L16.23 18z"/></svg></div>
+        <h3>24/7 Emergency</h3>
+        <p>Breakdowns and emergencies don't wait. We are available around the clock to respond to your call.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg></div>
+        <h3>Pickup Load Service</h3>
+        <p>Load up and move with our Bolero Pickup — perfect for agriculture, construction materials, and retail goods.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg></div>
+        <h3>Village & Rural Delivery</h3>
+        <p>Our Bolero Pickup handles rough village roads and remote routes that ordinary vehicles can't manage.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4v2l8 5 8-5V4zm0 4.236l-8 5-8-5V18h16V8.236z"/></svg></div>
+        <h3>Advance Booking</h3>
+        <p>Plan ahead and secure your transport in advance via WhatsApp or email us at <a href="mailto:ssivakumar2016@gmail.com" style="color:var(--gold); text-decoration:none;">ssivakumar2016@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="container">
+    <div class="section-label">Why Hanvika</div>
+    <h2 class="section-title">Why Choose Us</h2>
+    <div class="divider"></div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-num">01</div>
+        <h3>Always Available</h3>
+        <p>We never close. 24/7 operations mean you can count on us any time, day or night.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">02</div>
+        <h3>Experienced Team</h3>
+        <p>Our drivers are trained, courteous, and know the roads inside out.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">03</div>
+        <h3>Bolero Pickup</h3>
+        <p>Our Bolero Pickup is powerful, spacious, and built for any load — from goods to heavy materials.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">04</div>
+        <h3>Transparent Pricing</h3>
+        <p>No hidden charges. Clear quotes before every trip for complete peace of mind.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-num">05</div>
+        <h3>Local Knowledge</h3>
+        <p>Deep familiarity with Sunguvarchatram and surrounding regions for faster, smarter routes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VEHICLES -->
+<section id="vehicles">
+  <div class="container">
+    <div class="section-label">Our Fleet</div>
+    <h2 class="section-title">Mahindra Bolero Pickup</h2>
+    <div class="divider"></div>
+    <div class="vehicle-feature">
+      <div class="vehicle-img" style="padding:0; overflow:hidden; background:#111; min-height:260px; display:flex; align-items:center; justify-content:center;">
+        <img
+          src="https://www.motorbeam.com/wp-content/uploads/Mahindra-Bolero-Pickup.jpg"
+          alt="Mahindra Bolero Pickup"
+          onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Camponotus_flavomarginatus_ant.jpg/320px-Camponotus_flavomarginatus_ant.jpg'; this.style.display='none'; this.parentNode.innerHTML='<div style=\'padding:2.5rem; text-align:center;\'><svg viewBox=\'0 0 260 120\' width=\'240\' xmlns=\'http://www.w3.org/2000/svg\' fill=\'#C8952A\'><rect x=\'10\' y=\'40\' width=\'155\' height=\'55\' rx=\'4\'/><rect x=\'165\' y=\'55\' width=\'85\' height=\'40\' rx=\'3\'/><rect x=\'20\' y=\'45\' width=\'65\' height=\'30\' rx=\'2\' fill-opacity=\'.3\'/><rect x=\'95\' y=\'45\' width=\'60\' height=\'30\' rx=\'2\' fill-opacity=\'.3\'/><rect x=\'165\' y=\'60\' width=\'80\' height=\'22\' rx=\'2\' fill-opacity=\'.25\'/><circle cx=\'45\' cy=\'97\' r=\'15\'/><circle cx=\'45\' cy=\'97\' r=\'7\' fill=\'#1A2540\'/><circle cx=\'180\' cy=\'97\' r=\'15\'/><circle cx=\'180\' cy=\'97\' r=\'7\' fill=\'#1A2540\'/><circle cx=\'225\' cy=\'97\' r=\'15\'/><circle cx=\'225\' cy=\'97\' r=\'7\' fill=\'#1A2540\'/></svg><p style=\'color:#C8952A; font-family:Oswald,sans-serif; font-size:.75rem; letter-spacing:.15em; margin-top:1rem;\'>MAHINDRA BOLERO PICKUP</p></div>'"
+          style="width:100%; height:100%; object-fit:cover; min-height:260px; display:block;"
+        />
+      </div>
+      <div>
+        <p style="color:var(--muted); margin-bottom:1.2rem; font-weight:300;">We operate exclusively with the Mahindra Bolero Pickup — a powerful and dependable vehicle built for tough roads and heavy-duty transport. Ideal for goods transport, local errands, and outstation hauls across Tamil Nadu.</p>
+        <ul class="vehicle-specs">
+          <li><span>Vehicle Model</span><span>Mahindra Bolero</span></li>
+          <li><span>Vehicle Type</span><span>Pickup</span></li>
+          <li><span>Service Coverage</span><span>Local &amp; Outstation</span></li>
+          <li><span>Availability</span><span>24 Hours / 7 Days</span></li>
+          <li><span>Booking</span><span>Call / WhatsApp / Email</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="section-title">Contact &amp; Location</h2>
+    <div class="divider"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+          <div class="cinfo-text">
+            <label>Phone</label>
+            <p><a href="tel:9600648843">9600648843</a> &nbsp;|&nbsp; <a href="tel:7708417239">7708417239</a></p>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+          <div class="cinfo-text">
+            <label>Address</label>
+            <p>Aandal Nagar, Molachur Arch Opposite,<br/>Sunguvarchatram, Tamil Nadu</p>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg></div>
+          <div class="cinfo-text">
+            <label>Service Hours</label>
+            <p>Open 24 Hours — Every Day of the Year</p>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg></div>
+          <div class="cinfo-text">
+            <label>Owner</label>
+            <p>Sivakumar S</p>
+          </div>
+        </div>
+        <div class="cinfo">
+          <div class="cinfo-icon"><svg viewBox="0 0 24 24"><path d="M20 4H4v2l8 5 8-5V4zm0 4.236l-8 5-8-5V18h16V8.236z"/></svg></div>
+          <div class="cinfo-text">
+            <label>Email</label>
+            <p><a href="mailto:ssivakumar2016@gmail.com">ssivakumar2016@gmail.com</a></p>
+          </div>
+        </div>
+        <a href="https://wa.me/919600648843" class="whatsapp-btn" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+      </div>
+
+      <div class="contact-map-box">
+        <h3>Service Hours</h3>
+        <table class="hours-table">
+          <tr><td>Monday – Friday</td><td>24 Hours</td></tr>
+          <tr><td>Saturday</td><td>24 Hours</td></tr>
+          <tr><td>Sunday</td><td>24 Hours</td></tr>
+          <tr><td>Public Holidays</td><td>24 Hours</td></tr>
+        </table>
+        <h3 style="margin-top:1.5rem;">Quick Booking</h3>
+        <p>To book a vehicle or get a quote, simply give us a call or send a WhatsApp message. We'll confirm your booking within minutes.</p>
+        <div style="display:flex; flex-direction:column; gap:0.8rem; margin-top:0.5rem;">
+          <a href="tel:9600648843" class="btn-primary" style="text-align:center; display:block;">📞 Call 9600648843</a>
+          <a href="tel:7708417239" class="btn-primary" style="text-align:center; display:block; background:var(--steel);">📞 Alt: 7708417239</a>
+          <a href="https://wa.me/919600648843" class="whatsapp-btn" target="_blank" rel="noopener" style="justify-content:center;">
+            <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            WhatsApp Us
+          </a>
+          <a href="mailto:ssivakumar2016@gmail.com" style="display:flex; align-items:center; justify-content:center; gap:0.6rem; background:var(--steel); color:var(--white); font-family:'Oswald',sans-serif; font-size:0.9rem; letter-spacing:0.1em; text-transform:uppercase; padding:0.8rem 1.8rem; border-radius:3px; text-decoration:none; transition:background 0.2s;">
+            ✉ Email for Advance Booking
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <strong>Hanvika Transport</strong> · Owned by Sivakumar S · Sunguvarchatram</p>
+  <div class="footer-links">
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#vehicles">Fleet</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+</body>
+</html>
